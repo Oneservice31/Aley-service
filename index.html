@@ -18,7 +18,7 @@
         background-image:url('./IMG_0896.jpg');
         }
        #searchInput {
-            width: 93%;
+            width: 50%;
         }
         ul{
             list-style-type: none;
@@ -45,6 +45,12 @@
 </head>
 <body id="body">
     <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
+    <form id="searchForm">
+        <center>
+        <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
+        <button type="submit">Search</button>
+    </center>
+    </form>
     <ul>
         <li><center style="display: inline-block;"><a href="./haqqimizda.html" style="color: aqua;"><h1 id="id1">Haqqımızda və Biznes</h1></a></center></li>  
         <li><center style="display: inline-block;"><a href="./exeproqram.html" style="color: aqua;"><h1 id="id1">Exe proqramlar</h1></a></center></li>
@@ -60,36 +66,19 @@
    
     
     <script>
-        function navigateToUrl(inputId) {
-            const urlInput = document.getElementById(inputId);
-            let url = urlInput.value.trim();
-             function data(){
-                let data = ['chatgpt' == 'https://chatgpt.com/?oai-dm=1',
-                        'google' == 'https://www.google',
-                        'ronaldo' == 'https://www.google.com/search?q=ronaldo&sca_esv=a95d04ccf2083779&sca_upv=1&sxsrf=ADLYWIIs2PZT-VCztLtFUTNVykY2wS9y-w%3A1717873117730&ei=3alkZrGcLOXdxc8Po8_7yAQ&oq=ron&gs_lp=Egxnd3Mtd2l6LXNlcnAiA3JvbioCCAAyEBAAGIAEGLEDGEMYgwEYigUyChAAGIAEGEMYigUyDRAAGIAEGLEDGEMYigUyCBAAGIAEGLEDMgoQABiABBhDGIoFMgoQABiABBhDGIoFMgUQABiABDIKEAAYgAQYQxiKBTIKEAAYgAQYQxiKBTIKEAAYgAQYQxiKBUjzNlDBAViyJnABeAKQAQOYAZIHoAHKGaoBCTAuMi4xLjYtM7gBAcgBAPgBAZgCBaACuQWoAhPCAgQQABhHwgIHECMYJxjqAsICExAAGIAEGEMYtAIYigUY6gLYAQHCAgsQABiABBixAxiDAZgDF4gGAZAGCLoGBggBEAEYAZIHBTIuMS4yoAfxIw&sclient=gws-wiz-serp',
-                        'aley' == '31'
-             ]
-             }
-             data;
-            if (url) {
-                if (!url.startsWith("http://") && !url.startsWith("https://") && !url.includes(" ")) {
-                    url = "http://" + url;
-                } else if (url.includes(" ")) {
-                    url = "https://www.google.com/search?q=" + encodeURIComponent(url);
-                }
-                window.open(url, '_blank');
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var searchQuery = document.getElementById('searchInput').value.trim();
+            if (searchQuery) {
+                var searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchQuery);
+                window.open(searchUrl, '_blank'); 
+            } else {
+                alert('Zəhmət olmasa axtarış edin.');
             }
-        }
-
-        document.getElementById('searchButton').addEventListener('click', function() {
-            navigateToUrl('searchInput');
         });
 
-        document.getElementById('axtar').addEventListener('click', function() {
-            navigateToUrl('axtaris_yeri');
-        });
-
-        
+    
     </script>
 </body>
 </html>
