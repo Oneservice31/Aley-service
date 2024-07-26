@@ -1,33 +1,58 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Programlar</title>
+    <title>Online proqramlar</title>
     <style>
-        ul{
-            list-style-type: none;
-            
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
         }
-        a{
-            text-decoration: none;
-            
+
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        
-           
-        
-        #id1{
-            color: black;
+
+        #display {
+            width: 100%;
+            font-size: 2em;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
         }
-        li{
-            background-color: lightgray;
-            margin-right: 1000px;
-            
+
+        button {
+            width: 22%;
+            font-size: 1.5em;
+            padding: 10px;
+            margin: 5px 1%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        li:hover{
-            background-color: gray;
+
+        button:hover {
+            background-color: #f0f0f0;
         }
-        
+
+        button:active {
+            background-color: #e0e0e0;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -36,43 +61,56 @@
         <li><center style="display: inline-block;"><a href="./exeproqram.html" style="color: aqua;"><h1 id="id1">Exe proqramlar</h1></a></center></li>
         <li><center style="display: inline-block;" ><a href="./index.html" style="color: aqua;"><h1 id = "id1">Əsas Menyu</h1></a></center></li>
     </ul>
-    <center><h1><i><b>'Online' proqramlar</b></i></h1></center>
-    <center><button id="calculator">Calculator</button></center>
-    <h1><i><b>Calculatorda əməliyyatı 1,2,3,4 və ya vurma bölmə toplama çıxma yazaraq əməliyyatı seçə bilərsiz.</b></i></h1>
-    <center><button id="faiz">Faiz hesablama</button></center>
+    <div class="calculator">
+        <h1>Calculator</h1>
+        <input type="text" id="display" disabled>
+        <div class="row">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('+')">+</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('-')">-</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('*')">*</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendToDisplay('/')">/</button>
+        </div>
+        
+    </div>
+    <div>
+
+        center><button id="faiz">Faiz hesablama</button></center>
     <h1><i><b>Siz sadəcə ədədləri yazın. Faizdə isə faiz işarəsini qoya bilərsiz.</b></i></h1>
+    </div>
     <script>
-        // Kalkulyator
-        document.getElementById("calculator").addEventListener("click", function() {
-            let emeliyat = prompt('Zəhmət olmasa əməliyat seçin: 1- vurma 2- bölmə 3- toplama 4- çıxma ');
-            let a = parseFloat(prompt('Zəhmət olmasa birinci ədədi daxil edin: '));
-            let b = parseFloat(prompt('Zəhmət olmasa ikinci ədədi daxil edin: '));
-            let c;
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
 
-            switch(emeliyat) {
-                case '1':
-                case 'vurma':
-                    c = a * b;
-                    break;
-                case '2':
-                case 'bölmə':
-                    c = a / b;
-                    break;
-                case '3':
-                case 'toplama':
-                    c = a + b;
-                    break;
-                case '4':
-                case 'çıxma':
-                    c = a - b;
-                    break;
-                default:
-                    alert('Zəhmət olmasa 1-4 arasında bir əməliyat yazın və ya vurma bölmə toplama çıxma yazın');
-                    return;
-            }
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
 
-            alert('Cavab: ' + c);
-        });
+        function calculateResult() {
+            const display = document.getElementById('display');
+            display.value = eval(display.value);
+        }
+
+
 
         // Faiz Hesablama
         document.getElementById("faiz").addEventListener("click", function() {
@@ -80,7 +118,6 @@
             var b = parseFloat(prompt('Faizi daxil edin: '));
             var c = a * b / 100;
             alert('Nəticə: ' + c);
-        });
-    </script>  
+    </script>
 </body>
 </html>
