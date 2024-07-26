@@ -1,28 +1,33 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Online proqramlar</title>
+    <title>Online Proqramlar</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+        body{
+            background: ./IMG_0896.jpg;
         }
-
-        .calculator {
+        .container {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        #display {
+        h1 {
+            font-size: 1.8em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"] {
             width: 100%;
-            font-size: 2em;
+            font-size: 1.8em;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -32,37 +37,74 @@
 
         button {
             width: 22%;
-            font-size: 1.5em;
+            font-size: 1.2em;
             padding: 10px;
             margin: 5px 1%;
             border: 1px solid #ccc;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            background-color: #f8f8f8;
+            color: #333;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         button:hover {
-            background-color: #f0f0f0;
+            background-color: #e0e0e0;
         }
 
         button:active {
-            background-color: #e0e0e0;
+            background-color: #ccc;
+            transform: scale(0.98);
         }
 
         .row {
             display: flex;
             justify-content: space-between;
+            width: 100%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        li {
+            font-size: 1.2em;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        li:hover {
+            background-color: #e0e0e0;
+        }
+
+        li:active {
+            background-color: #ccc;
+            transform: scale(0.98);
+        }
+
+        .container:nth-of-type(1) {
+            background-color: #e0f7fa;
+        }
+
+        .container:nth-of-type(2) {
+            background-color: #e8f5e9;
+        }
+
+        .container:nth-of-type(3) {
+            background-color: #fce4ec;
         }
     </style>
 </head>
 <body>
-    <ul>
-        <li><center style="display: inline-block;"><a href="./haqqimizda.html" style="color: aqua;"><h1 id="id1">Haqqımızda və Biznes</h1></a></center></li>  
-        <li><center style="display: inline-block;"><a href="./exeproqram.html" style="color: aqua;"><h1 id="id1">Exe proqramlar</h1></a></center></li>
-        <li><center style="display: inline-block;" ><a href="./index.html" style="color: aqua;"><h1 id = "id1">Əsas Menyu</h1></a></center></li>
-    </ul>
-    <div class="calculator">
-        <h1>Calculator</h1>
+   <center> <div class="container">
+        <h1>Kalkulyatr</h1>
         <input type="text" id="display" disabled>
         <div class="row">
             <button onclick="clearDisplay()">C</button>
@@ -89,13 +131,21 @@
             <button onclick="calculateResult()">=</button>
             <button onclick="appendToDisplay('/')">/</button>
         </div>
-        
-    </div>
-    <div>
+    </div></center>
 
-        center><button id="faiz">Faiz hesablama</button></center>
-    <h1><i><b>Siz sadəcə ədədləri yazın. Faizdə isə faiz işarəsini qoya bilərsiz.</b></i></h1>
-    </div>
+   <center> <div class="container">
+        <h1>Faiz Hesablama</h1>
+        <button id="faiz">Faiz Hesabla</button>
+        <h1><i><b>Siz yalnızca ədədləri daxil edin. Faizdə isə faiz işarəsini qoya bilərsiniz.</b></i></h1>
+    </div></center>
+
+    <center><div class="container">
+        <h1>To-Do Listesi</h1>
+        <input type="text" id="todoInput" placeholder="Yeni vəzifə...">
+        <button onclick="addTodo()">Əlavə et</button>
+        <ul id="todoList"></ul>
+    </div></center>
+
     <script>
         function clearDisplay() {
             document.getElementById('display').value = '';
@@ -107,17 +157,37 @@
 
         function calculateResult() {
             const display = document.getElementById('display');
-            display.value = eval(display.value);
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Xəta';
+            }
         }
 
-
-
-        // Faiz Hesablama
         document.getElementById("faiz").addEventListener("click", function() {
             var a = parseFloat(prompt('Ədədi daxil edin: '));
             var b = parseFloat(prompt('Faizi daxil edin: '));
-            var c = a * b / 100;
-            alert('Nəticə: ' + c);
+            if (!isNaN(a) && !isNaN(b)) {
+                var c = a * b / 100;
+                alert('Nəticə: ' + c);
+            } else {
+                alert('Zəhmət olmasa, ədədləri düzgün daxil edin.');
+            }
+        });
+
+        function addTodo() {
+            const todoInput = document.getElementById('todoInput');
+            const todoText = todoInput.value.trim();
+            if (todoText !== '') {
+                const li = document.createElement('li');
+                li.textContent = todoText;
+                li.onclick = function() {
+                    li.remove();
+                };
+                document.getElementById('todoList').appendChild(li);
+                todoInput.value = '';
+            }
+        }
     </script>
 </body>
 </html>
