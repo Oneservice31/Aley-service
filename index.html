@@ -3,68 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="w5UMOO09S0gqmZP0ufyWXIXYs1OXygelL_X4veFIXLw" />
-    <meta name="google-site-verification" content="YLETv2AB0ZWwVLHoc74v1zpPdnp24OoSz-YBVFbReac" />
-    <title>Aley service</title>
+    <title>Document</title>
     <style>
+        body {
+            background-image: url('./IMG_0896.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+    
         #basliq {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size: 50px;
-        } 
-        #axtaris_yeri {
-            width: 54%;
-            height: 31%;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        #body {
-        background-image:url('./IMG_0896.jpg');
+    
+        .container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.9));
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-       #searchInput {
-            width: 50%;
+    
+        h1 {
+            font-size: 2.5em; 
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        ul{
-            list-style-type: none;
-            
+    
+        input[type="text"] {
+            width: 100%;
+            font-size: 1.6em;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
         }
-        a{
+    
+        button {
+            width: 22%;
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 5px 1%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+    
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+    
+        button:active {
+            background-color: #3e8e41;
+            transform: scale(0.98);
+        }
+    
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    
+        #searchInput {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    
+        a {
             text-decoration: none;
-            
+            color: #4CAF50;
         }
-       
-        #id1{
+    
+        a:hover {
+            color: #388E3C;
+        }
+    
+        #id1 {
             color: black;
         }
-        li{
-            background-color: lightgray;
-            margin-right: 1000px;
-            
+    
+        ul#todoList {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
         }
-        li:hover{
-            background-color: gray;
+    
+        ul#todoList li {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        
+    
+        ul#todoList li:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transform: scale(1.02);
+        }
+         a {
+            text-decoration: underline; /* Alt çizgi ekledik */
+            color: #616161;
+            transition: color 0.3s;
+        }
     </style>
+    
+    
+
 </head>
-<body id="body">
-    <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
-    <form id="searchForm">
-        <center>
-        <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
-        <button type="submit">Search</button>
-    </center>
-    </form>
-    <ul>
-        <li><center style="display: inline-block;"><a href="./haqqimizda.html" style="color: aqua;"><h1 id="id1">Haqqımızda və Biznes</h1></a></center></li>  
-        <li><center style="display: inline-block;"><a href="./exeproqram.html" style="color: aqua;"><h1 id="id1">Exe proqramlar</h1></a></center></li>
-        <li><center style="display: inline-block;" ><a href="./Online.html" style="color: aqua;"><h1 id = "id1">Online proqramlar</h1></a></center></li>
-    </ul>
-   <!-- <center style="display: block;">
-        <input id="axtaris_yeri" type="search" placeholder=" Url daxil et ">  
-        <button id="axtar">axtar</button>
-    </center>-->
+<body>
+    <body id="body">
+        <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
+        <form id="searchForm">
+            <center>
+            <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
+            <button type="submit">Search</button>
+        </center>
+    <center><h1><b><i>'Windows' proqramlar</i></b></h1></center>
    
-   
+    <a href="https://drive.google.com/file/d/17C_uIxts5Zr6HeZ6-EwyeJM8QUniQv-b/view?usp=drive_link"><center><h1><b><i>Bəhs  oyunu </i></b></h1></center></a></a>
+    <h1><b><i>Bəhs oyunu aparat və sizin oynadığınız sadə oyundur. Vaxt keçirmək üçün oynaya bilərsiz.</i></b></h1>
+    <a href="https://drive.google.com/file/d/1WxQ9DLF8KoL-WDkYmYzQw3yRLpUWRShC/view?usp=drive_link"><center><h1><i><b>Calculator </b></i></h1></center></a>
+    <h1><i><b>Kalkulyator dan istifadə zamanı bir az gözdəyin sonra isə soruşulan məlumatları daxil et.</b></i></h1>
+    <a href="https://drive.google.com/file/d/1vAEtPsr6PpuR4VPrx5iIwHUXD27GXtUY/view?usp=sharing"><center><h1><b><i>Faiz hesablama</i></b></h1></center></a>
+    <h1><b><i>Faiz hesablama proqramı sadə proqramdır.</i></b></h1>
+    <a href="https://drive.google.com/file/d/1lwvXUd0EYakAsAOZ0sUgho7SMLbecDEb/view?usp=sharing"><center><h1><i><b>Ilan oyunu</b></i></h1></center></a>
+    <h1><i><b>Oyunu yükləyin və açın. Açılan pəncərdə heç nə etməyin oyun avtamatik açılacaq. İrəli getsəz və sizə geriyə bassaz oyun bağlanacaq çünki ilan geriyə gedə bilməyəcək.</b></i></h1>
+    <a href="https://drive.google.com/file/d/1S4vkL-GO2BbMSLAhAVJ43ZOXakwKeECs/view?usp=sharing"><center><h1><i><b>Calculator 2</b></i></h1></center></a>
+    <h1><i><b>Calculator 2 7 əməldən ibarətdir. Digər calculator 4 əməldən ibarətdir.</b></i></h1>
+    <a href="https://drive.google.com/drive/folders/1rNXPpZBXTiG8Ebi753SA2ZqpyDP1YbXm?usp=sharing"><center><h1><b><i>Futbol kart oyunu </i></b></h1></center></a>
+    <h1><i><b>Kart oyunu içindəki şəkillərə görə siz oyunu qovluğun içində açmalısınız. Oyunu acandan sonra enter düyməsinə basaraq yeni kart aça bilərsiz.</b></i></h1>
+    <a href="https://drive.google.com/file/d/1ufsXfNfCA4Lwu0qEyx-egOZjQSonV8yN/view?usp=sharing"><center><h1><i><b> Browser</b></i></h1></center></a>
+    <h1><i><b>Bu browser i açın və bir az gözdəyin. Hər hansı texniki səbəbdən browser bir az gec açılır.</b></i></h1>  
+    <a href="https://drive.google.com/file/d/1Tik5hEQ7Ut9byekIHSE1AV6lXTbtdA6h/view?usp=sharing"><center><h1><b><i>Aleyos 1.0 </i></b></h1></center></a>
+    <h1><i><b>'Aleyos system 1.0 ' 4 proqram var və bu Aleyos un ilk versiyasıdır</b></i></h1>
+    <a href="https://drive.google.com/file/d/17zUp0P19UmjxAbuwqBV04byumfADbmlc/view?usp=sharing"><center><h1><b><i>Aleyos system 1.2</i></b></h1></center></a>
+    <h1><i><b>'Aleyos system 1.2' daha çox proqram var 1.0 görə. </b></i></h1>   
+    <a href="https://drive.google.com/file/d/1d0hJsEPte4VzhaZ4L2mXrvm0JAUxjjIe/view?usp=drive_link"><center><h1><i><b>Aleyos system qrafikləşdirilmiş 1.2</b></i></h1></center></a>
+    <h1><b><i>Bu isə qrafikləşdirilmiş formadadır.  </i></b></h1>
+
+    <h1><b><i>Online proqramlar</i></b></h1>
+    <center> <div class="container">
         
-   
+        <h1>Kalkulyatr</h1>
+        <input type="text" id="display" disabled>
+        <div class="row">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('+')">+</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('-')">-</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('*')">*</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendToDisplay('/')">/</button>
+        </div>
+    </div></center>
+
+   <center> <div class="container">
+        <h1>Faiz Hesablama</h1>
+        <button id="faiz">Faiz Hesabla</button>
+        <h1><i><b>Siz yalnızca ədədləri daxil edin. Faizdə isə faiz işarəsini qoya bilərsiniz.</b></i></h1>
+    </div></center>
+
+    <center><div class="container">
+        <h1>To-Do Listesi</h1>
+        <input type="text" id="todoInput" placeholder="Yeni vəzifə...">
+        <button onclick="addTodo()">Əlavə et</button>
+        <ul id="todoList"></ul>
+    </div></center>
+
+
+    <h1><i><b> Əlaqə Və Haqqımızda</b></i></h1> 
+    <h1><i>
+        Tarix- 22/05/2024; Saytımızı ziyarət etdiyiniz üçün təşəkkür edirik. Biz sizin üçün çalışırıq. Saytımız
+        təlif haqqı və qannuni olaraq qorunur. Biz ilə hər hansı Biznes fikirləriniz varsa gmail: Aley.service@gmail.com atmağınız xahiş olunur. Hər hansı qüsurumuz varsa bildirməyiniz xahiş olunur. 
+    </i>
+    </h1> 
+<!--script-->
+    
+    
+    
+    <script>
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function calculateResult() {
+            const display = document.getElementById('display');
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Xəta';
+            }
+        }
+
+        document.getElementById("faiz").addEventListener("click", function() {
+            var a = parseFloat(prompt('Ədədi daxil edin: '));
+            var b = parseFloat(prompt('Faizi daxil edin: '));
+            if (!isNaN(a) && !isNaN(b)) {
+                var c = a * b / 100;
+                alert('Nəticə: ' + c);
+            } else {
+                alert('Zəhmət olmasa, ədədləri düzgün daxil edin.');
+            }
+        });
+
+        function addTodo() {
+            const todoInput = document.getElementById('todoInput');
+            const todoText = todoInput.value.trim();
+            if (todoText !== '') {
+                const li = document.createElement('li');
+                li.textContent = todoText;
+                li.onclick = function() {
+                    li.remove();
+                };
+                document.getElementById('todoList').appendChild(li);
+                todoInput.value = '';
+            }
+        }
+    </script>
+    
     
     <script>
         document.getElementById('searchForm').addEventListener('submit', function(event) {
