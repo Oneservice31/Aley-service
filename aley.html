@@ -1,25 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aley</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        #basliq {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 50px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.9));
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            font-size: 1.6em;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        button {
+            width: 22%;
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 5px 1%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            background-color: #3e8e41;
+            transform: scale(0.98);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        #searchInput {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        a {
+            text-decoration: underline;
+            color: #616161;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #388E3C;
+        }
+
+        ul#todoList {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        ul#todoList li {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        ul#todoList li:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transform: scale(1.02);
+        }
+
+        /* Iframe CSS */
+        iframe {
+            width: 100%;
+            height: 300px; /* Yüksekliği cihaz ekranına göre ayarlayabilirsiniz */
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        iframe:last-of-type {
+            margin-bottom: 0;
+        }
+    </style>
 </head>
-<body>
-    <body id="body">
-        <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
-        <form id="searchForm">
-            <center>
-            <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
-            <button type="submit">Search</button>
-        </center>
-<iframe src="./windows.html" frameborder="0"></iframe>
-<iframe src="./online.html" frameborder="0"></iframe>
-<iframe src="./əlaqə.html" frameborder="0"></iframe>
-    
-<script src="scirpt.js"></script>
-    
+<body id="body">
+    <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
+    <form id="searchForm">
+        <center>
+        <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
+        <button type="submit">Search</button>
+    </center>
+    <iframe src="./windows.html"></iframe>
+    <iframe src="./online.html"></iframe>
+    <iframe src="./əlaqə.html"></iframe>
+    </form>
+
+    <script>
+        
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    var searchQuery = document.getElementById('searchInput').value.trim();
+    if (searchQuery) {
+        var searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchQuery);
+        window.open(searchUrl, '_blank'); 
+    } 
+});
+    </script>
 </body>
 </html>
