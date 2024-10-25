@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aley Service</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,7 +11,6 @@
             margin: 0;
             padding: 20px;
         }
-
         .container {
             margin: 20px auto;
             padding: 20px;
@@ -21,11 +20,9 @@
             max-width: 400px;
             text-align: center;
         }
-
         h1 {
             color: #333;
         }
-
         #display {
             width: 100%;
             padding: 10px;
@@ -35,13 +32,11 @@
             margin-bottom: 10px;
             text-align: right;
         }
-
         .row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-
         button {
             width: 22%;
             padding: 15px;
@@ -52,107 +47,156 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         button:hover {
             background-color: #45a049;
         }
-
-        button:active {
-            background-color: #3e8e41;
+        #saat, #chatbot {
+            margin-top: 20px;
         }
-
+        #response {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .question-button {
+            display: block;
+            width: 300px;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 5px;
+        }
+        .question-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <center> 
+    <center>
+        <!-- Faiz Hesablama Bölməsi -->
         <div class="container">
             <h1>Faiz Hesablama</h1>
             <input type="number" id="numberInput" placeholder="Ədəd daxil edin">
             <input type="number" id="percentInput" placeholder="Faiz daxil edin">
             <button id="faiz" onclick="calculatePercentage()">Faiz Hesabla</button>
-            <h1><i><b>Siz yalnızca ədədləri daxil edin. Faizdə isə faiz işarəsini qoya bilərsiniz.</b></i></h1>
             <p id="result"></p>
         </div>
-    </center>
-    <div class="container">
-        <h1>Kalkulyator</h1>
-        <input type="text" id="display" disabled="">
-        <div class="row">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button onclick="appendToDisplay('+')">+</button>
-        </div>
-        <div class="row">
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button onclick="appendToDisplay('-')">-</button>
-        </div>
-        <div class="row">
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button onclick="appendToDisplay('*')">*</button>
-        </div>
-        <div class="row">
-            <button onclick="appendToDisplay('0')">0</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            <button onclick="calculateResult()">=</button>
-            <button onclick="appendToDisplay('/')">/</button>
-        </div>
-    </div>
 
-    <center>
+        <!-- Kalkulyator Bölməsi -->
+        <div class="container">
+            <h1>Kalkulyator</h1>
+            <input type="text" id="display" disabled="">
+            <div class="row">
+                <button onclick="clearDisplay()">C</button>
+                <button onclick="appendToDisplay('1')">1</button>
+                <button onclick="appendToDisplay('2')">2</button>
+                <button onclick="appendToDisplay('3')">3</button>
+                <button onclick="appendToDisplay('+')">+</button>
+            </div>
+            <div class="row">
+                <button onclick="appendToDisplay('4')">4</button>
+                <button onclick="appendToDisplay('5')">5</button>
+                <button onclick="appendToDisplay('6')">6</button>
+                <button onclick="appendToDisplay('-')">-</button>
+            </div>
+            <div class="row">
+                <button onclick="appendToDisplay('7')">7</button>
+                <button onclick="appendToDisplay('8')">8</button>
+                <button onclick="appendToDisplay('9')">9</button>
+                <button onclick="appendToDisplay('*')">*</button>
+            </div>
+            <div class="row">
+                <button onclick="appendToDisplay('0')">0</button>
+                <button onclick="appendToDisplay('.')">.</button>
+                <button onclick="calculateResult()">=</button>
+                <button onclick="appendToDisplay('/')">/</button>
+            </div>
+        </div>
+
+        <!-- To-Do List Bölməsi -->
         <div class="container">
             <h1>To-Do Listesi</h1>
             <input type="text" id="todoInput" placeholder="Yeni vəzifə...">
             <button onclick="addTodo()">Əlavə et</button>
             <ul id="todoList"></ul>
         </div>
+
+        <!-- Saat və Chatbot Bölməsi -->
+        <div id="saat">
+            <h1>Saat: <span id="clock">00:00:00</span></h1>
+        </div>
+        <div id="chatbot">
+            <h2>Süni İntellekt Çatbot</h2>
+            <div id="questionButtons">
+                <button class="question-button" onclick="getResponse('saat neçədədir?')">Saat neçədədir?</button>
+                <button class="question-button" onclick="getResponse('salam')">Salam</button>
+                <button class="question-button" onclick="getResponse('necəsən')">Necəsən?</button>
+                <button class="question-button" onclick="getResponse('hava necədir?')">Hava necədir?</button>
+                <button class="question-button" onclick="getResponse('təşəkkür edirəm')">Təşəkkür edirəm</button>
+                <button class="question-button" onclick="getResponse('mənimlə zarafat et')">Mənimlə zarafat et</button>
+            </div>
+            <div id="response">Cavab: </div>
+        </div>
     </center>
 
     <script>
-        function clearDisplay() {
-            document.getElementById("display").value = "";
-        }
-
-        function appendToDisplay(value) {
-            document.getElementById("display").value += value;
-        }
-
-        function calculateResult() {
-            try {
-                let result = eval(document.getElementById("display").value);
-                document.getElementById("display").value = result;
-            } catch (error) {
-                document.getElementById("display").value = "Error";
-            }
-        }
-
-        function addTodo() {
-            const todoInput = document.getElementById("todoInput");
-            const todoText = todoInput.value.trim();
-
-            if (todoText !== "") {
-                const li = document.createElement("li");
-                li.textContent = todoText;
-                document.getElementById("todoList").appendChild(li);
-                todoInput.value = "";
-            }
-        }
-
+        // Faiz Hesablama
         function calculatePercentage() {
             const number = parseFloat(document.getElementById('numberInput').value);
             const percent = parseFloat(document.getElementById('percentInput').value);
+            document.getElementById('result').innerText = isNaN(number) || isNaN(percent)
+                ? 'Xahiş edirəm, düzgün ədədlər daxil edin.'
+                : `Nəticə: ${(number * percent) / 100}`;
+        }
 
-            if (isNaN(number) || isNaN(percent)) {
-                document.getElementById('result').innerText = 'Xahiş edirəm, düzgün ədədlər daxil edin.';
-            } else {
-                const result = (number * percent) / 100;
-                document.getElementById('result').innerText = `Nəticə: ${result}`;
+        // Kalkulyator
+        function clearDisplay() { document.getElementById("display").value = ""; }
+        function appendToDisplay(value) { document.getElementById("display").value += value; }
+        function calculateResult() {
+            try { document.getElementById("display").value = eval(document.getElementById("display").value); }
+            catch { document.getElementById("display").value = "Error"; }
+        }
+
+        // To-Do List
+        function addTodo() {
+            const todoText = document.getElementById("todoInput").value.trim();
+            if (todoText) {
+                const li = document.createElement("li");
+                li.textContent = todoText;
+                document.getElementById("todoList").appendChild(li);
+                document.getElementById("todoInput").value = "";
             }
+        }
+
+        // Saat
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Chatbot Cavabları
+        const jokes = [
+            "Niyə kompüter heç vaxt aclıq çəkmir? Çünki həmişə prosessoru var!", 
+            "Niyə kitabxanaçılar zarafat etmir? Hər kəs sakit olmalıdır!",
+            "İki telefon danışır: 'Sənin səsin gəlmir, zəng vur!'"
+        ];
+
+        function getResponse(userInput) {
+            const now = new Date();
+            const responses = {
+                "saat neçədədir?": `Hazırda saat ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}-dir.`,
+                "salam": "Salam! Sizə necə kömək edə bilərəm?",
+                "necəsən": "Mən bir proqramam, amma mənim üçün hər şey yaxşıdır!",
+                "hava necədir?": "Hazırda hava ilə bağlı məlumatım yoxdur.",
+                "təşəkkür edirəm": "Siz sağ olun! Yardım edə bildiyimə şadam.",
+                "mənimlə zarafat et": jokes[Math.floor(Math.random() * jokes.length)]
+            };
+            document.getElementById('response').textContent = `Cavab: ${responses[userInput] || "Üzr istəyirik, bu sualı anlaya bilmirəm."}`;
         }
     </script>
 </body>
