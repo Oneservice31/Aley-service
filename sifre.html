@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="T6l_2n7O6lrRVhXnBd6aYxfWz3iye2wGC2FDPvsO-Ng" />
-    
     <title>Aley</title>
     <style>
         body {
@@ -48,7 +47,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="password"] {
             width: 100%;
             font-size: 1.6em;
             padding: 10px;
@@ -82,62 +81,24 @@
             transform: scale(0.98);
         }
 
-        .row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        #searchInput {
-            width: 60%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        a {
-            text-decoration: underline;
-            color: #616161;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #388E3C;
-        }
-
-        ul#todoList {
-            list-style-type: none;
-            padding: 0;
-            width: 100%;
-        }
-
-        ul#todoList li {
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin-bottom: 5px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        ul#todoList li:hover {
-            background-color: #e0e0e0;
-            cursor: pointer;
-            transform: scale(1.02);
+        #gmailInitial {
+            font-size: 2em;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #333;
+            display: none; /* Başlangıçta gizli */
         }
 
         /* Iframe CSS */
         iframe {
-    width: 100%; /* Genişliği %100 olarak bırakın, böylece konteynerin tamamını kaplar */
-    height: 600px; /* Yüksekliği istediğiniz gibi artırabilirsiniz */
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 2px solid #ddd;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+            width: 80%; 
+            height: 600px; 
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
         iframe:last-of-type {
             margin-bottom: 0;
@@ -146,36 +107,63 @@
 </head>
 <body id="body">
     <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
+    
+    <div id="gmailInitial"></div> <!-- Gmail ilk harfi burada gösterilecek -->
+    
     <form id="searchForm">
         <center>
-        <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
-        <button type="submit">Search</button>
-    </center>
-    <iframe src="./windows.html"></iframe>
-    <iframe src="./online.html"></iframe>
-    <iframe src="./əlaqə.html"></iframe>
+            <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
+            <button type="submit">Search</button>
+        </center>
+        <iframe src="./windows.html"></iframe>
+        <iframe src="./online.html"></iframe>
+        <iframe src="./əlaqə.html"></iframe>
     </form>
 
     <script>
-        
-document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+        // Kullanıcı bilgilerini saklamak için bir nesne
+        const users = {
+            'Tunar': '1221Tunar',
+            'punhanrzazade5@gmail.com': '1220',
+            'mehemmedjavziyev@gmail.com': 'Mehemmed12',
+        };
 
-    var searchQuery = document.getElementById('searchInput').value.trim();
-    if (searchQuery) {
-        var searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchQuery);
-        window.open(searchUrl, '_blank'); 
-    } 
-});
+        // Giriş formu için olay dinleyicisi
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Kullanıcı adı ve şifre kontrolü
+            if (username === 'skhavat') {
+                window.location.href = 'ad.html'; // skhavat yazılırsa ad.html açılır
+            } else if (users[username] && users[username] === password) {
+                alert('Giriş başarılı!');
+                localStorage.setItem('username', username); // Kullanıcı adını kaydet
+                window.location.href = 'index.html'; // Şifre doğruysa index.html açılır
+            } else {
+                alert('İsdifadəçi adı və ya şifrə səhvdir.');
+            }
+        });
+
+        // Arama formu için olay dinleyicisi
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var searchQuery = document.getElementById('searchInput').value.trim();
+            if (searchQuery) {
+                var searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchQuery);
+                window.open(searchUrl, '_blank'); 
+            } 
+        });
+
+        // Eğer kullanıcı girişi yapmışsa
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('gmailInitial').textContent = username.charAt(0).toUpperCase(); // Kullanıcı adının ilk harfini göster
+            document.getElementById('gmailInitial').style.display = 'block'; // Harfi göster
+        }
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
