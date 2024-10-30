@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="T6l_2n7O6lrRVhXnBd6aYxfWz3iye2wGC2FDPvsO-Ng" />
+    
     <title>Aley</title>
     <style>
         body {
@@ -27,8 +28,8 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            width: 350px; /* Genişlik ayarlandı */
-            margin: 20px auto;
+            width: 400px;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -47,10 +48,10 @@
             -webkit-text-fill-color: transparent;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"] {
             width: 100%;
-            font-size: 1.4em; /* Font boyutu küçültüldü */
-            padding: 8px; /* Padding küçültüldü */
+            font-size: 1.6em;
+            padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -81,12 +82,65 @@
             transform: scale(0.98);
         }
 
-        #gmailInitial {
-            font-size: 2em; /* Gmail ilk harfi boyutu */
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: #333;
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        #searchInput {
+            width: 60%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        a {
+            text-decoration: underline;
+            color: #616161;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #388E3C;
+        }
+
+        ul#todoList {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        ul#todoList li {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        ul#todoList li:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transform: scale(1.02);
+        }
+
+        /* Iframe CSS */
+        iframe {
+    width: 80%; /* Genişliği %100 olarak bırakın, böylece konteynerin tamamını kaplar */
+    height: 600px; /* Yüksekliği istediğiniz gibi artırabilirsiniz */
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+        iframe:last-of-type {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -94,59 +148,34 @@
     <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
     <form id="searchForm">
         <center>
-            <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
-            <button type="submit">Search</button>
-        </center>
+        <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
+        <button type="submit">Search</button>
+    </center>
+    <iframe src="./windows.html"></iframe>
+    <iframe src="./online.html"></iframe>
+    <iframe src="./əlaqə.html"></iframe>
     </form>
-    <div class="container">
-        <h2>Hesab Girişi</h2>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="İsdifadəçi Adı" required>
-            <input type="password" id="password" placeholder="Şifrə" required>
-            <button type="submit">Giriş Et</button>
-        </form>
-        <h1><b><i>Hesabınız yoxdur? aley.service@gmail.com ilə əlaqə saxlayın və hesab yaradın</i></b></h1>
-    </div>
-    
-    <div id="gmailInitial"></div> <!-- Gmail ilk harfi burada gösterilecek -->
 
     <script>
-        // Kullanıcı bilgilerini saklamak için bir nesne
-        const users = {
-            'Tunar': 'AydanTunar',
-            'punhanrzazade5@gmail.com': '1220',
-            'mehemmedjavziyev@gmail.com': 'Mehemmed12',
-        };
+        
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
 
-        // Giriş formu için olay dinleyicisi
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            // Kullanıcı adı ve şifre kontrolü
-            if (username === 'skhavat') {
-                window.location.href = 'ad.html'; // skhavat yazılırsa ad.html açılır
-            } else if (users[username] && users[username] === password) {
-                alert('Giriş başarılı!');
-                document.getElementById('gmailInitial').textContent = username.charAt(0).toUpperCase(); // Gmail'in ilk harfini büyük yap
-                document.getElementById('gmailInitial').style.display = 'block'; // Harfi göster
-            } else {
-                alert('İsdifadəçi adı vəya şifrə səhvdir.');
-            }
-        });
-
-        // Arama formu için olay dinleyicisi
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            const searchQuery = document.getElementById('searchInput').value.trim();
-            if (searchQuery) {
-                const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchQuery);
-                window.open(searchUrl, '_blank'); 
-            } 
-        });
+    var searchQuery = document.getElementById('searchInput').value.trim();
+    if (searchQuery) {
+        var searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchQuery);
+        window.open(searchUrl, '_blank'); 
+    } 
+});
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
