@@ -1,169 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="T6l_2n7O6lrRVhXnBd6aYxfWz3iye2wGC2FDPvsO-Ng" />
-    <title>Aley</title>
+    <title>Basit Sohbet Uygulaması</title>
     <style>
         body {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
         }
 
-        #basliq {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-size: 50px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .container {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.9));
-            padding: 20px;
+        .chat-container {
+            width: 100%;
+            max-width: 450px;
+            background: #fff;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            width: 400px;
-            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+            max-height: 400px;
+        }
+
+        .chat-box .message {
+            display: flex;
             align-items: center;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            letter-spacing: 1.5px;
-            line-height: 1.2;
-            background: linear-gradient(90deg, #4CAF50, #81C784);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            font-size: 1.6em;
-            padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: right;
+            padding: 12px;
+            border-radius: 20px;
+            word-wrap: break-word;
+            width: 100%;
+            max-width: 80%;
         }
 
-        button {
-            width: 22%;
-            font-size: 1.2em;
-            padding: 10px;
-            margin: 5px 1%;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #4CAF50;
+        .chat-box .sent {
+            background-color: #dcf8c6;
+            justify-content: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-box .received {
+            background-color: #fff;
+            justify-content: flex-start;
+            border: 1px solid #ddd;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 12px;
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            margin-right: 10px;
+            font-size: 1em;
+        }
+
+        .chat-input button {
+            padding: 12px 20px;
+            background: #25d366;
             color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
         }
 
-        button:hover {
-            background-color: #45a049;
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        button:active {
-            background-color: #3e8e41;
-            transform: scale(0.98);
-        }
-
-        #gmailInitial {
-            font-size: 2em;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: #333;
-            display: none; /* Başlangıçta gizli */
-        }
-
-        /* Iframe CSS */
-        iframe {
-            width: 80%; 
-            height: 600px; 
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        iframe:last-of-type {
-            margin-bottom: 0;
+        .chat-input button:hover {
+            background: #1ebe5b;
         }
     </style>
 </head>
-<body id="body">
-    <center id="basliq"><h1><b><i>Aley</i></b></h1></center>
-    
-    <div id="gmailInitial"></div> <!-- Gmail ilk harfi burada gösterilecek -->
-    
-    <form id="searchForm">
-        <center>
-            <input type="text" id="searchInput" placeholder="Webdə axtarış edin">
-            <button type="submit">Search</button>
-        </center>
-        <iframe src="./windows.html"></iframe>
-        <iframe src="./online.html"></iframe>
-        <iframe src="./əlaqə.html"></iframe>
-    </form>
+<body>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box"></div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Mesajınızı yazın..." />
+            <button id="send-button">Gönder</button>
+        </div>
+    </div>
 
     <script>
-        // Kullanıcı bilgilerini saklamak için bir nesne
-        const users = {
-            'Tunar': '1221Tunar',
-            'punhanrzazade5@gmail.com': '1220',
-            'mehemmedjavziyev@gmail.com': 'Mehemmed12',
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+
+        // Mesajları ekrana yazdır
+        function displayMessage(message, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            if (sender === 'sent') {
+                messageElement.classList.add('sent');
+            } else {
+                messageElement.classList.add('received');
+            }
+
+            const textElement = document.createElement('div');
+            textElement.textContent = message;
+
+            messageElement.appendChild(textElement);
+            chatBox.appendChild(messageElement);
+
+            // Chat kutusunu otomatik kaydır
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Kullanıcı adı belirle
+        const userName = prompt("Lütfen adınızı girin:", "Kullanıcı");
+
+        // Mesaj gönderme fonksiyonu
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+
+            // Gönderilen mesajı ekrana yazdır
+            displayMessage(message, 'sent');
+
+            // localStorage'a kaydet
+            let messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push({ sender: userName, message: message });
+            localStorage.setItem('messages', JSON.stringify(messages));
+
+            // Input kutusunu temizle
+            messageInput.value = '';
+        }
+
+        // Sayfa yüklendiğinde mesajları ekrana getir
+        window.onload = () => {
+            let messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.forEach(msg => {
+                displayMessage(msg.message, msg.sender === userName ? 'sent' : 'received');
+            });
         };
 
-        // Giriş formu için olay dinleyicisi
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
+        // Buton tıklaması ile mesaj gönderme
+        sendButton.addEventListener('click', sendMessage);
 
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            // Kullanıcı adı ve şifre kontrolü
-            if (username === 'skhavat') {
-                window.location.href = 'ad.html'; // skhavat yazılırsa ad.html açılır
-            } else if (users[username] && users[username] === password) {
-                alert('Giriş başarılı!');
-                localStorage.setItem('username', username); // Kullanıcı adını kaydet
-                window.location.href = 'index.html'; // Şifre doğruysa index.html açılır
-            } else {
-                alert('İsdifadəçi adı və ya şifrə səhvdir.');
+        // Enter tuşu ile mesaj gönderme
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
             }
         });
 
-        // Arama formu için olay dinleyicisi
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            var searchQuery = document.getElementById('searchInput').value.trim();
-            if (searchQuery) {
-                var searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchQuery);
-                window.open(searchUrl, '_blank'); 
-            } 
-        });
-
-        // Eğer kullanıcı girişi yapmışsa
-        const username = localStorage.getItem('username');
-        if (username) {
-            document.getElementById('gmailInitial').textContent = username.charAt(0).toUpperCase(); // Kullanıcı adının ilk harfini göster
-            document.getElementById('gmailInitial').style.display = 'block'; // Harfi göster
-        }
+        // SetInterval kullanarak her 5 saniyede bir mesajları kontrol etme
+        setInterval(() => {
+            let messages = JSON.parse(localStorage.getItem('messages')) || [];
+            chatBox.innerHTML = '';
+            messages.forEach(msg => {
+                displayMessage(msg.message, msg.sender === userName ? 'sent' : 'received');
+            });
+        }, 5000); // 5 saniyede bir mesajları kontrol eder
     </script>
 </body>
 </html>
